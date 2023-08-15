@@ -36,6 +36,22 @@ module.exports = {
               exclude: /node_modules/,
               use: ['style-loader', 'css-loader', 'sass-loader'],
             },
+            {
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader'],
+            },
+            {
+              test: /\.(png|jpe?g|gif|svg)$/i,
+              use: [
+                  {
+                      loader: 'file-loader', // or 'url-loader'
+                      options: {
+                          name: '[name].[ext]',
+                          outputPath: 'assets/', // This is where the images will be copied to in your build output
+                      },
+                  },
+              ],
+          },
           ],
     },
     plugins: [

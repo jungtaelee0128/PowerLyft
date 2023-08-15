@@ -1,0 +1,10 @@
+$primary-color: blue;
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.header {
+    background-color: $primary-color;
+    color: yellow
+}
