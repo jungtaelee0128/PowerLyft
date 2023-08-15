@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import FeedItem from './FeedItem';
 
 const WorkoutSection = () => {
     const [categories, setCategories] = useState([]);
@@ -15,26 +16,29 @@ const WorkoutSection = () => {
             });
     }, []);
 
-    // ...
-
     useEffect(() => {
         const fetchCategoryImages = async () => {
-            const imageMap = {};
-
-            for (const category of categories) {
+            const imagePromises = categories.map(async category => {
                 try {
-                    const response = await fetch(`https://wger.de/api/v2/exercise/?category=${category.id}`);
-                    const exerciseData = await response.json();
-
-                    if (exerciseData.results.length > 0 && exerciseData.results[0].images?.length > 0) {
-                        const imageUrl = exerciseData.results[0].images[0]?.image;
-                        imageMap[category.name] = imageUrl;
+                    const response = await fetch(`https://wger.de/api/v2/exerciseimage/?category=${category.id}`);
+                    const imageData = await response.json();
+                    if (imageData.results.length > 0) {
+                        const imageUrl = imageData.results[0].image;
+                        return { category: category.name, imageUrl };
                     }
+                    return null;
                 } catch (error) {
                     console.error(`Error fetching images for category ${category.name}:`, error);
+                    return null;
                 }
-            }
+            });
 
+            const images = await Promise.all(imagePromises);
+            const filteredImages = images.filter(image => image !== null);
+            const imageMap = {};
+            filteredImages.forEach(image => {
+                imageMap[image.category] = image.imageUrl;
+            });
             setCategoryImages(imageMap);
         };
 
@@ -42,9 +46,6 @@ const WorkoutSection = () => {
             fetchCategoryImages();
         }
     }, [categories]);
-
-
-
 
     return (
         <section id="workout" className="d-flex align-items-center">
