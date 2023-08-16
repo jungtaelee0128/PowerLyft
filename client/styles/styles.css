@@ -141,26 +141,6 @@ body {
     background: #209dd8;
 }
 
-#hero .btn-watch-video {
-    font-size: 16px;
-    display: flex;
-    align-items: center;
-    transition: color 0.5s;
-    margin: 10px 0 0 25px;
-    line-height: 1;
-}
-
-#hero .btn-watch-video i {
-    font-size: 32px;
-    line-height: 0;
-    color: #fff;
-    transition: color 0.3s;
-    margin-right: 8px;
-}
-
-#hero .btn-watch-video:hover i {
-    color: #47b2e4;
-}
 
 #hero .animated {
     animation: up-down 2s ease-in-out infinite alternate-reverse both;
@@ -250,4 +230,90 @@ body {
     height: 50px;
     width: 110px;
     background: blue;
+}
+
+.bold-heading {
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.bold-heading h2 {
+    font-weight: bold;
+    font-size: 35px;
+    line-height: 56px;
+}
+
+/* FOOTER */
+.footer {
+    background-color: white;
+    color: black;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.social-links {
+    margin-top: 10px;
+}
+
+.social-links a {
+    color: black;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.social-links a:hover {
+    text-decoration: underline;
+}
+
+/* FeedItem styles */
+.feed-item-container {
+    border: 1px solid black;
+    width: 300px;
+    height: 100%;
+    margin: 10px;
+    flex: 0 0 calc(33.33% - 20px);
+    background-color: white;
+    position: relative;
+    text-align: center;
+}
+
+.feed-item-image {
+    width: 100%;
+    height: auto;
+    margin-top: 10px;
+}
+
+.feed-item-text {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+}
+
+/* Media queries */
+@media (max-width: 767px) {
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+}
+.content-container {
+    padding-bottom: 100px; /* Adjust the value as needed */
+}
+.exercise-container {
+    margin-top: 150px;
 }

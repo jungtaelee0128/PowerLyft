@@ -42,6 +42,7 @@
     "common-path-prefix": "^3.0.0",
     "convert-source-map": "^1.9.0",
     "core-js-compat": "^3.32.0",
+    "cors": "^2.8.5",
     "debug": "^4.3.4",
     "electron-to-chromium": "^1.4.491",
     "enhanced-resolve": "^5.15.0",
@@ -94,6 +95,8 @@
     "react-dom": "^18.2.0",
     "react-multi-carousel": "^2.8.4",
     "react-responsive-carousel": "^3.2.23",
+    "react-router": "^6.15.0",
+    "react-router-dom": "^6.15.0",
     "regenerate": "^1.4.2",
     "regenerate-unicode-properties": "^10.1.0",
     "regenerator-runtime": "^0.14.0",
@@ -128,7 +131,7 @@
   "scripts": {
     "start": "node server/server.js",
     "build": "NODE_ENV=production webpack",
-    "dev": "NODE_ENV=development webpack serve --open --hot",
+    "dev": "concurrently \"nodemon server/server.js\" \"NODE_ENV=development webpack serve --open --hot\"",
     "gulp-prod": "node_modules/.bin/gulp prod",
     "gulp-dev": "node_modules/.bin/gulp dev"
   },

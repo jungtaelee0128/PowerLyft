@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import FeedItem from './FeedItem';
+import '../styles/styles.css';
+import gymCat from '../assets/gymcat.png';
 
 const WorkoutSection = () => {
     const [categories, setCategories] = useState([]);
-    const [categoryImages, setCategoryImages] = useState({});
 
     useEffect(() => {
         fetch('https://wger.de/api/v2/exercisecategory/')
@@ -16,49 +17,24 @@ const WorkoutSection = () => {
             });
     }, []);
 
-    useEffect(() => {
-        const fetchCategoryImages = async () => {
-            const imagePromises = categories.map(async category => {
-                try {
-                    const response = await fetch(`https://wger.de/api/v2/exerciseimage/?category=${category.id}`);
-                    const imageData = await response.json();
-                    if (imageData.results.length > 0) {
-                        const imageUrl = imageData.results[0].image;
-                        return { category: category.name, imageUrl };
-                    }
-                    return null;
-                } catch (error) {
-                    console.error(`Error fetching images for category ${category.name}:`, error);
-                    return null;
-                }
-            });
-
-            const images = await Promise.all(imagePromises);
-            const filteredImages = images.filter(image => image !== null);
-            const imageMap = {};
-            filteredImages.forEach(image => {
-                imageMap[image.category] = image.imageUrl;
-            });
-            setCategoryImages(imageMap);
-        };
-
-        if (categories.length > 0) {
-            fetchCategoryImages();
-        }
-    }, [categories]);
-
     return (
         <section id="workout" className="d-flex align-items-center">
             <div className="container">
                 <div className="row">
-                    {categories.map(category => (
-                        <div key={category.id} style={styles.container}>
-                            <h3>{category.name}</h3>
-                            {categoryImages[category.name] && (
-                                <img src={categoryImages[category.name]} alt={category.name} style={styles.image} />
-                            )}
-                        </div>
+                    <div className="bold-heading">
+                        <h2> Browse Through Different Exercises </h2>
+                    </div>
+                    {categories.map((category)=> (
+                        <FeedItem
+                            key={category.id}
+                            url={gymCat}
+                            categoryName={category.name}
+                            id={category.id}
+                        />
                     ))}
+                    <div style={styles.buttonContainer}>
+                        <button style={styles.seeMoreButton}>See More</button>
+                    </div>
                 </div>
             </div>
         </section>
@@ -66,17 +42,26 @@ const WorkoutSection = () => {
 };
 
 const styles = {
-    container: {
-        border: '1px solid black',
-        width: '300px',
-        margin: '10px',
-        padding: '10px',
-        textAlign: 'center',
+    seeMoreButton: {
+        fontFamily: "Jost, sans-serif",
+        fontWeight: 500,
+        fontSize: '16px',
+        letterSpacing: '1px',
+        display: 'inline-block',
+        
+        padding: '8px', // Adjusted padding for shorter width
+        width: '150px', // Set a fixed width
+        borderRadius: '50px',
+        transition: 'background-color 0.5s',
+        backgroundColor: '#47b2e4',
+        border: 'none',
+        color: 'white',
+        cursor: 'pointer',
     },
-    image: {
-        width: '100%',
-        height: 'auto',
-        marginTop: '10px',
+    buttonContainer: {
+        display: 'flex',
+        justifyContent: 'center', // Center the button horizontally
+        marginTop: '10px', // Adjust spacing as needed
     },
 };
 
