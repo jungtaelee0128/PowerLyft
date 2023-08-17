@@ -48,7 +48,6 @@ const styles = {
         fontSize: '16px',
         letterSpacing: '1px',
         display: 'inline-block',
-        
         padding: '8px', // Adjusted padding for shorter width
         width: '150px', // Set a fixed width
         borderRadius: '50px',
