@@ -8,6 +8,7 @@ import HeroSection from './HeroNav';
 import WorkoutSection from './WorkingOutSection';
 import Footer from './Footer';
 import Exercises from './Exercises';
+import JoinToday from './JoinToday';
 
 class App extends Component {
     render() {
@@ -16,7 +17,7 @@ class App extends Component {
                 <div>
                     <NavigationBar />
                     <Routes>
-                        <Route path="/" element={<div className="content-container"><HeroSection /> <WorkoutSection /></div>} />
+                        <Route path="/" element={<div className="content-container"><HeroSection /> <WorkoutSection /> <JoinToday /></div>} />
                         <Route path="/exercises/:id/:categoryName" element={<div className="content-container"><Exercises /></div>} />
                     </Routes>
                     <Footer />
