@@ -1,6 +1,7 @@
 import React from 'react';
 import '../styles/styles.css'; 
 import { useEffect , useState} from 'react';
+import WorkoutSection from './WorkingOutSection';
 
 const CLIENT_ID = '40204467aaefb63f724d';
 
@@ -53,9 +54,18 @@ const JoinToday = () => {
     return (
         <section id="JoinToday" className="d-flex align-items-center">
             <div className="container">
+            {localStorage.getItem('accessToken') ? 
+            <>
+            <WorkoutSection />
+            </>
+            :
+            <>
+            </>
+            }
                 <div className="row">
                     {localStorage.getItem('accessToken') ? 
                     <>
+                        {/* <WorkoutSection /> */}
                         <div className="bold-heading">
                             <h2> You are now logged in </h2> 
                         </div>

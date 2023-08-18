@@ -17,7 +17,7 @@ class App extends Component {
                 <div>
                     <NavigationBar />
                     <Routes>
-                        <Route path="/" element={<div className="content-container"><HeroSection /> <WorkoutSection /> <JoinToday /></div>} />
+                        <Route path="/" element={<div className="content-container"><HeroSection /> <JoinToday /></div>} />
                         <Route path="/exercises/:id/:categoryName" element={<div className="content-container"><Exercises /></div>} />
                     </Routes>
                     <Footer />
